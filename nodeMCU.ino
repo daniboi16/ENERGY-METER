@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h>
 
-const char* ssid = ""; 
-const char* password = ""; 
+const char* ssid = "hathway31"; 
+const char* password = "idontknow"; 
 
 const char* host = "script.google.com";
 const int httpsPort = 443;
@@ -36,14 +36,18 @@ void setup() {
 void loop() {
   int voltage = 5;
   float average=0;
-  for (int i=0;i<1000;i++){ 
-    average = (0.0264 * analogRead(A0) + 10.52)/1000;
-    delay(1);}
+  for (int i=0;i<1000;i++)
+  { 
+    int read=analogRead(A0);
+    average=average+(((0.199264*read))-1.52)/1000;
+    delay(1);
+    }
     
-  int current=average*1000;
+  int current=average;
+  Serial.println(current);
   
   sendData(current, voltage); 
-  delay(60000);
+  delay(6000);
 }
 
 void sendData(int i, int v) {
@@ -84,4 +88,4 @@ void sendData(int i, int v) {
   Serial.println("closing connection");
   Serial.println("==========");
   Serial.println();
-} 
+}
