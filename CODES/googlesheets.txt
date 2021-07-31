@@ -1,4 +1,3 @@
-//script to be written in the script editor of the google sheet. make sure to name this the same as the google sheet
 function doGet(e) { 
   Logger.log( JSON.stringify(e) );
   var result = 'Ok';
